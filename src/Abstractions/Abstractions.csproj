@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Savage.Passwords.Abstractions</AssemblyName>
+    <RootNamespace>Savage.Passwords</RootNamespace>
+    <Title>Savage.Passwords.Abstractions</Title>
+    <Authors>Alan Savage</Authors>
+    <Description>Abstractions to provide a common interface to support the use of various password hashing algorithms</Description>
+    <Copyright>© 2020 Alan Savage</Copyright>
+    <PackageProjectUrl>https://github.com/alansav/passwords</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/alansav/passwords</RepositoryUrl>
+    <PackageTags>password hashing;</PackageTags>
+    <PackageId>Savage.Passwords.Abstractions</PackageId>
+    <Product>Savage.Passwords.Abstractions</Product>
+    <Version>0.0.0.0</Version>
+    <PackageVersion>0.0.0.0</PackageVersion>
+  </PropertyGroup>
+
+</Project>

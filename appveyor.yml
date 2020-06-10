@@ -1,0 +1,50 @@
+-
+  branches:
+    only:
+      - master
+  version: 1.2.0.{build}
+  pull_requests:
+    do_not_increment_build_number: true
+  image: Visual Studio 2019
+  clone_depth: 1
+  dotnet_csproj:
+    patch: true
+    file: '**\*.csproj'
+    version: '{version}'
+    package_version: '{version}'
+  build_script:
+  - cmd: dotnet build -c Release -v minimal src\Passwords.sln
+  after_build:
+  - cmd: dotnet test -c Release -v minimal --no-build src\Passwords.sln
+  - cmd: dotnet pack -c Release -v minimal --no-build src\Abstractions\Abstractions.csproj
+  - cmd: dotnet pack -c Release -v minimal --no-build src\Rfc2898PasswordDeriveBytes\Rfc2898PasswordDeriveBytes.csproj
+  artifacts:
+    - path: 'src\**\*.nupkg'
+      name: nuget package
+    - path: 'src\**\*.snupkg'
+      name: nuget symbol package
+  deploy:
+  - provider: NuGet
+    symbol_server: https://api.nuget.org/v3/index.json
+    api_key:
+      secure: VYKi8NEuQDj3Y8t0pRI+GncETpXaLNoCRSLlQlg8r5be+CN84ahiCk1r+gRKn8cR
+    artifact: /.*\.nupkg/
+-
+  branches:
+    except:
+      - master
+  version: 1.2.0.{build}
+  pull_requests:
+    do_not_increment_build_number: true
+  image: Visual Studio 2019
+  clone_depth: 1
+  dotnet_csproj:
+    patch: true
+    file: '**\*.csproj'
+    version: '{version}'
+    package_version: '{version}'
+  build_script:
+  - cmd: dotnet build -c Release -v minimal src\Passwords.sln
+  after_build:
+  - cmd: dotnet test -c Release -v minimal --no-build src\Abstractions\Abstractions.csproj
+  - cmd: dotnet pack -c Release -v minimal --no-build src\Rfc2898PasswordDeriveBytes\Rfc2898PasswordDeriveBytes.csproj
